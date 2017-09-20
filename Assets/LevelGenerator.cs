@@ -17,6 +17,16 @@ public class LevelGenerator : MonoBehaviour
     public float chanceDown;
     public float chanceLeft;
 
+    public float minX;
+    public float maxX = 999999999f;
+    public float minZ;
+    public float maxZ = 999999999f;
+
+    public float xAmount;
+    public float zAmount;
+    public float extraWallX;
+    public float extraWallZ;
+
 	IEnumerator Start ()
     {
        // Random.seed = 10;
@@ -27,6 +37,11 @@ public class LevelGenerator : MonoBehaviour
             float direction = Random.Range(0f, 1f);
             CallMoveGenerator(direction);
             yield return new WaitForSeconds(waitTime);
+
+            if(i == tileAmount - 1)
+            {
+                Finish();
+            }
         }
 	}
 
@@ -70,5 +85,52 @@ public class LevelGenerator : MonoBehaviour
         }
         else
             tileAmount++;
+    }
+
+    void Finish()
+    {
+        CreateWallValues();
+        StartCoroutine(CreateWalls());
+    }
+
+    void CreateWallValues()
+    {
+        for(int i = 0; i < createdTiles.Count; i++)
+        {
+            if(createdTiles[i].x < minX)
+            {
+                minX = createdTiles[i].x;
+            }
+
+            if (createdTiles[i].x > maxX)
+            {
+                maxX = createdTiles[i].x;
+            }
+
+            if (createdTiles[i].z < minZ)
+            {
+                minZ = createdTiles[i].z;
+            }
+
+            if (createdTiles[i].z > maxZ)
+            {
+                maxZ = createdTiles[i].z;
+            }
+
+            xAmount = ((maxX - minX) / tileSize) + extraWallX;
+            zAmount = ((maxZ - minZ) / tileSize) + extraWallZ;
+        }
+    }
+
+    IEnumerator CreateWalls()
+    {
+        for(int x = 0; x < xAmount; x++)
+        {
+            if(!createdTiles.Contains(new Vector3(minX - (extraWallX * tileSize / 2) + (x * tileSize), 0, minZ -(extraWallZ * tileSize) / 2) * (x * tileSize)))
+            {
+                Instantiate(wall, new Vector3(minX - (extraWallX * tileSize / 2) + (x * tileSize), 0, minZ - (extraWallZ * tileSize) / 2) * (x * tileSize), transform.rotation);
+                yield return new WaitForSeconds(waitTime);
+            }
+        }
     }
 }
