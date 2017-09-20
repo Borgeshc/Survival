@@ -203,12 +203,8 @@ MonoBehaviour:
   rooms:
   - {fileID: 114040640472868692, guid: 959829c4f4b15e241ab51abaa77962b5, type: 2}
   - {fileID: 114931722935359392, guid: 101d32c8d53538c4487bde576c0519bc, type: 2}
-  - {fileID: 114040640472868692, guid: 959829c4f4b15e241ab51abaa77962b5, type: 2}
-  - {fileID: 114931722935359392, guid: 101d32c8d53538c4487bde576c0519bc, type: 2}
-  - {fileID: 114040640472868692, guid: 959829c4f4b15e241ab51abaa77962b5, type: 2}
-  - {fileID: 114931722935359392, guid: 101d32c8d53538c4487bde576c0519bc, type: 2}
   numOfRooms: 20
-  waitTime: 0
+  waitTime: 0.1
 --- !u!4 &1355372303
 Transform:
   m_ObjectHideFlags: 0

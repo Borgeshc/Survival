@@ -139,7 +139,7 @@ MonoBehaviour:
   - {fileID: 1264525211731352, guid: 861797b7d9446b940898fc87b9afbed5, type: 2}
   wall: {fileID: 1627145156094560, guid: 933cf094dd7909e47b5a61666305eb50, type: 2}
   createdTiles: []
-  tileAmount: 50
+  tileAmount: 200
   tileSize: 5
   waitTime: 0.01
   chanceUp: 0.25
